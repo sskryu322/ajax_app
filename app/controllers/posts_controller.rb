@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   # def new
-  # end
+  # end       コメントアウトする
 
   def create
     # Post.create(content: params[:content])

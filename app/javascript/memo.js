@@ -15,13 +15,14 @@ const buildHTML = (XHR) => {
 };
 
 function post (){
+  // イベント発火させる要素を取得し変数submitに格納
   const submit = document.getElementById("submit");
   // eはイベントオブジェクト 「投稿ボタンをクリックした」という情報を持ったオブジェクトということ
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     // フォームの要素を取得
     const form = document.getElementById("form");
-    // フォームの内容を取得 FormDataフォームデータオブジェクト
+    // フォームの内容を取得 FormData(フォームの要素)フォームデータオブジェクト
     const formData = new FormData(form);
     // 非同期通信のためのリクエストを送信 XMLHttpRequestエックスエムエル エイチティーティーピー リクエストオブジェクト
     const XHR = new XMLHttpRequest();
@@ -30,6 +31,7 @@ function post (){
     XHR.open("POST", "/posts", true);
     // サーバーからのレスポンスの形式をJSONに指定 responseTypeレスポンスタイププロパティ
     XHR.responseType = "json";
+    // ここらへんでコントローラーのcreateアクションを整備
     // フォームの内容をサーバー側に送信 send()センドメソッド
     XHR.send(formData);
     // 注意点：通常リクエストと二重で送られてしまうので
@@ -42,7 +44,7 @@ function post (){
         // return nullはjavascriptの処理から抜け出すコード。エラーの場合は以降の処理をストップできる。
         return null;
       };
-      // 新しいメモを挿入するための要素を取得して、変数listに格納しています。
+      // 新しい投稿を挿入するための要素を取得して、変数listに格納しています。HTML要素は挿入したい場所にid入れて作成する
       const list = document.getElementById("list");
       // 投稿を表示後に投稿入力欄に残ったままの内容を消すために入力内容をformTextに格納する。
       const formText = document.getElementById("content");
@@ -57,5 +59,6 @@ function post (){
     };
   });
 };
-
+// ページが読み込まれたらこのファイルの処理を実行するための記述
+// window.addEventListener('load', 【実際に行う処理】);
 window.addEventListener('load', post);

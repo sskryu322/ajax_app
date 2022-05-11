@@ -4,9 +4,10 @@
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
 
+<!-- ここに投稿した内容が入る -->
 <div id="list">
 </div>
-
+<!---------------------------------- -->
 <% @posts.each do |post| %>
   <div class="post">
     <div class="post-date">
